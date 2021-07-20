@@ -31,6 +31,7 @@
 #
 98
 281
+2059
 2060
 # Tests that are disabled here for Hyper are SUPPOSED to work but
 # still need adjustments in tests or code. Tests that cannot be
