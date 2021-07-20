@@ -6,7 +6,7 @@ Category: curl
 Retry on any error. This option is used together with --retry.
 
 This option is the "sledgehammer" of retrying. Do not use this option by
-default (eg in curlrc), there may be unintended consequences such as sending or
+default (e.g. in curlrc), there may be unintended consequences such as sending or
 receiving duplicate data. Do not use with redirected input or output. You'd be
 much better off handling your unique problems in shell script. Please read the
 example below.
