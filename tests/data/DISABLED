@@ -29,10 +29,11 @@
 1801
 #
 #
-98
-281
-2059
-2060
+#98
+#281
+#2059
+#2060
+#
 # Tests that are disabled here for Hyper are SUPPOSED to work but
 # still need adjustments in tests or code. Tests that cannot be
 # fixed for hyper should be adjusted for it in the test file.
