@@ -23,7 +23,7 @@ jobs:
         - name: torture
           install: nghttp2 openssl
           configure: --enable-debug --disable-shared --disable-threaded-resolver --with-openssl=/usr/local/opt/openssl
-          tflags: -n -t --shallow=25 !FTP
+          tflags: -d -v -n -t --shallow=25 !FTP
           macosx-version-min: 10.9
     steps:
     - run: echo libtool autoconf automake pkg-config ${{ matrix.build.install }} | xargs -Ix -n1 echo brew '"x"' > /tmp/Brewfile
