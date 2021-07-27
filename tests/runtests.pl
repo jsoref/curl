@@ -485,7 +485,7 @@ sub startnew {
 
     logmsg "startnew: $cmd\n" if ($verbose);
 
-    exec '/bin/sh', '-c', 'date; ps -ef; lsof -iTCP -n -P';
+    system '/bin/sh', '-c', 'date; ps -ef; lsof -iTCP -n -P';
     my $child = fork();
     my $pid2 = 0;
 
