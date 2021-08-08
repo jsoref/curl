@@ -485,7 +485,7 @@ sub startnew {
 
     logmsg "startnew: $cmd\n" if ($verbose);
 
-    system '/bin/sh', '-c', 'date; ps -ef; lsof -iTCP -n -P; killall sws';
+    system '/bin/sh', '-c', 'date; ps -ef; lsof -iTCP -n -P; for a in ./log/*_server.log; do echo $a:; cat $a; done; killall sws';
     my $child = fork();
     my $pid2 = 0;
 
