@@ -46,7 +46,7 @@
 
 /* SSL backend-specific #if branches in this file must be kept in the order
    documented in curl_ntlm_core. */
-#if defined(NTLM_NEEDS_NSS_INIT)
+#ifdef NTLM_NEEDS_NSS_INIT
 #include "vtls/nssg.h" /* for Curl_nss_force_init() */
 #endif
 
@@ -170,7 +170,7 @@ static CURLcode ntlm_decode_type2_target(struct Curl_easy *data,
   const unsigned char *type2 = Curl_bufref_ptr(type2ref);
   size_t type2len = Curl_bufref_len(type2ref);
 
-#if defined(CURL_DISABLE_VERBOSE_STRINGS)
+#ifdef CURL_DISABLE_VERBOSE_STRINGS
   (void) data;
 #endif
 
@@ -271,7 +271,7 @@ CURLcode Curl_auth_decode_ntlm_type2_message(struct Curl_easy *data,
   const unsigned char *type2 = Curl_bufref_ptr(type2ref);
   size_t type2len = Curl_bufref_len(type2ref);
 
-#if defined(NTLM_NEEDS_NSS_INIT)
+#ifdef NTLM_NEEDS_NSS_INIT
   /* Make sure the crypto backend is initialized */
   result = Curl_nss_force_init(data);
   if(result)

@@ -114,7 +114,7 @@ tcpkeepalive(struct Curl_easy *data,
     infof(data, "Failed to set SO_KEEPALIVE on fd %d", sockfd);
   }
   else {
-#if defined(SIO_KEEPALIVE_VALS)
+#ifdef SIO_KEEPALIVE_VALS
     struct tcp_keepalive vals;
     DWORD dummy;
     vals.onoff = 1;
@@ -1061,10 +1061,10 @@ CURLcode Curl_is_connected(struct Curl_easy *data,
 
 static void tcpnodelay(struct Curl_easy *data, curl_socket_t sockfd)
 {
-#if defined(TCP_NODELAY)
+#ifdef TCP_NODELAY
   curl_socklen_t onoff = (curl_socklen_t) 1;
   int level = IPPROTO_TCP;
-#if !defined(CURL_DISABLE_VERBOSE_STRINGS)
+#ifndef CURL_DISABLE_VERBOSE_STRINGS
   char buffer[STRERROR_LEN];
 #else
   (void) data;
@@ -1091,7 +1091,7 @@ static void nosigpipe(struct Curl_easy *data,
   int onoff = 1;
   if(setsockopt(sockfd, SOL_SOCKET, SO_NOSIGPIPE, (void *)&onoff,
                 sizeof(onoff)) < 0) {
-#if !defined(CURL_DISABLE_VERBOSE_STRINGS)
+#ifndef CURL_DISABLE_VERBOSE_STRINGS
     char buffer[STRERROR_LEN];
     infof(data, "Could not set SO_NOSIGPIPE: %s",
           Curl_strerror(SOCKERRNO, buffer, sizeof(buffer)));
@@ -1316,7 +1316,7 @@ static CURLcode singleipconnect(struct Curl_easy *data,
     switch(error) {
     case EINPROGRESS:
     case EWOULDBLOCK:
-#if defined(EAGAIN)
+#ifdef EAGAIN
 #if (EAGAIN) != (EWOULDBLOCK)
       /* On some platforms EAGAIN and EWOULDBLOCK are the
        * same value, and on others they are different, hence

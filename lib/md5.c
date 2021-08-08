@@ -38,7 +38,7 @@
 #endif
 #endif /* USE_MBEDTLS */
 
-#if defined(USE_GNUTLS)
+#ifdef USE_GNUTLS
 
 #include <nettle/md5.h>
 #include "curl_memory.h"
@@ -84,7 +84,7 @@ typedef mbedtls_md5_context MD5_CTX;
 
 static void MD5_Init(MD5_CTX *ctx)
 {
-#if !defined(HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS)
+#ifndef HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS
   mbedtls_md5_starts(ctx);
 #else
   (void) mbedtls_md5_starts_ret(ctx);
@@ -95,7 +95,7 @@ static void MD5_Update(MD5_CTX *ctx,
                        const unsigned char *data,
                        unsigned int length)
 {
-#if !defined(HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS)
+#ifndef HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS
   mbedtls_md5_update(ctx, data, length);
 #else
   (void) mbedtls_md5_update_ret(ctx, data, length);
@@ -104,7 +104,7 @@ static void MD5_Update(MD5_CTX *ctx,
 
 static void MD5_Final(unsigned char *digest, MD5_CTX *ctx)
 {
-#if !defined(HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS)
+#ifndef HAS_MBEDTLS_RESULT_CODE_BASED_FUNCTIONS
   mbedtls_md5_finish(ctx, digest);
 #else
   (void) mbedtls_md5_finish_ret(ctx, digest);
